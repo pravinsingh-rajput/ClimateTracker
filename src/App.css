@@ -26,7 +26,6 @@
 }
 .right_container {
   display: flex;
-  border: 1px solid green;
   flex-direction: column;
   width: 75%;
   padding: 2px 4px;

@@ -1,0 +1,89 @@
+.highlight {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 15px;
+}
+
+.highlight_label {
+  margin: 10px 0px;
+}
+
+.qualtity_type {
+  background-color: #4dd637;
+  color: #000000;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 50px;
+}
+
+.airlable_container {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0px;
+  width: 420px;
+  max-width: 420px;
+}
+
+.airlabel {
+  color: #ffffff59;
+  margin: 5px;
+}
+
+.highlight_divider {
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  margin-bottom: 20px;
+}
+
+.airdata {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 12px;
+}
+
+AirIcon {
+  font-size: 40px;
+}
+
+.airtype_container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+}
+
+.uppercontainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.lowercontainer {
+  margin: 20px 0px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sunrise,
+.sunset {
+  width: 180px;
+  margin: 5px;
+  display: flex;
+}
+.sun_time,
+.moon_time {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 15px;
+}
+
+.sunrise_sunset {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  padding-bottom: 8px;
+}
+
+.sunset_time,
+.sunrise_time {
+  font-size: 20px;
+}

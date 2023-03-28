@@ -1,0 +1,18 @@
+.future_data {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 12px 0px;
+  padding: 4px 0px;
+  width: 220px;
+  font-size: 12px;
+}
+
+.future_temp {
+  font-size: 16px;
+  margin-left: 6px;
+}
+
+sup {
+  font-size: 10px;
+}

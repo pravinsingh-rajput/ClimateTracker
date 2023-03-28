@@ -1,0 +1,63 @@
+p {
+  display: flex;
+}
+
+.temp_data {
+  display: flex;
+}
+
+.box_label {
+  margin-top: 5px;
+  margin-bottom: 8px;
+}
+
+.show_temp {
+  font-size: 50px;
+  margin: 5px 0px;
+}
+
+.climate_condition {
+  margin: 5px 0px;
+  margin-bottom: 8px;
+}
+
+.celcius,
+.degree {
+  width: fit-content;
+  height: fit-content;
+  font-size: 16px;
+  margin: 0px;
+}
+
+.condition_container {
+  height: max-content;
+  width: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.celcius {
+  font-size: 30px;
+}
+
+.divider {
+  margin: 8px 0px;
+  width: 220px;
+  height: 2px;
+  background-color: rgb(80, 79, 79);
+}
+
+.dateTime_container,
+.loc_container {
+  margin: 5px 0px;
+}
+
+.date_time,
+.detailed_loc {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  margin-left: 5px;
+}

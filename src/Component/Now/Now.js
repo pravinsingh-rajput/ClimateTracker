@@ -8,7 +8,7 @@ import Card from "../../UI/Card";
 const Now = () => {
   return (
     <div>
-      <Card className="City_temp_container">
+      <Card className="city_temp_container">
         <h2 className="box_label">Now</h2>
         <div className="seach_temp_data">
           <div className="temp_data">

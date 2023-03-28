@@ -18,7 +18,7 @@ const TodaysHighlight = () => {
         <h3 className="highlight_label">Todays Highlight</h3>
         <div className="container">
           <div className="uppercontainer">
-            <SquareCard className="left_container">
+            <Card className="highlight_left_container">
               <div className="airlable_container">
                 <p className="airlabel">Air Qulaity Index</p>
                 <p className="qualtity_type">Good</p>
@@ -33,8 +33,8 @@ const TodaysHighlight = () => {
                   <AirType />
                 </div>
               </div>
-            </SquareCard>
-            <SquareCard className="right_container">
+            </Card>
+            <Card className="highlight_right_container">
               <div className="airlable_container">
                 <p className="airlabel">Sunrise & Sunset</p>
               </div>
@@ -55,7 +55,7 @@ const TodaysHighlight = () => {
                   </p>
                 </div>
               </div>
-            </SquareCard>
+            </Card>
           </div>
           <div className="lowercontainer">
             <SquareCard></SquareCard>

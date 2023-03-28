@@ -4,24 +4,32 @@
   border-radius: 15px;
 }
 
+.highlight_left_container,
+.highlight_right_container {
+  background-color: #0d0d0da2;
+  border-radius: 5px;
+  width: 45%;
+  height: fit-content;
+}
+
 .highlight_label {
-  margin: 10px 0px;
+  margin: 12px 0px;
 }
 
 .qualtity_type {
   background-color: #4dd637;
   color: #000000;
-  font-weight: 500;
+  font-weight: 400;
   padding: 4px 10px;
   border-radius: 50px;
+  width: 65px;
+  height: 28px;
 }
 
 .airlable_container {
   display: flex;
   justify-content: space-between;
   padding: 15px 0px;
-  width: 420px;
-  max-width: 420px;
 }
 
 .airlabel {
@@ -54,7 +62,7 @@ AirIcon {
 
 .uppercontainer {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .lowercontainer {
@@ -63,12 +71,21 @@ AirIcon {
   justify-content: space-between;
 }
 
+.sunrise_sunset {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  padding-bottom: 8px;
+}
+
 .sunrise,
 .sunset {
-  width: 180px;
+  width: 160px;
   margin: 5px;
   display: flex;
+  flex-direction: row;
 }
+
 .sun_time,
 .moon_time {
   display: flex;
@@ -76,14 +93,11 @@ AirIcon {
   margin: 0px 15px;
 }
 
-.sunrise_sunset {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  padding-bottom: 8px;
-}
-
 .sunset_time,
 .sunrise_time {
   font-size: 20px;
+}
+
+.lowercontainer {
+  padding: 5px 25px;
 }

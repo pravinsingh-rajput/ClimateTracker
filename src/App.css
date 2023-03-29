@@ -65,11 +65,11 @@
   .todayLabel {
     display: block;
   }
-
+  /* 
   .now,
   .forecast {
     width: 500px;
-  }
+  } */
 
   .right_container {
     display: flex;

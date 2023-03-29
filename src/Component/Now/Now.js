@@ -14,8 +14,7 @@ const Now = () => {
           <div className="temp_data">
             <div className="temp_container">
               <h1 className="show_temp">
-                5 <sup className="degree">o</sup>
-                <span className="celcius">C</span>
+                5 °<span className="celcius">C</span>
               </h1>
               <p className="climate_condition">Broken Cloud</p>
             </div>

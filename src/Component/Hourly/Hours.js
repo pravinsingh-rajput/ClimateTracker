@@ -3,13 +3,14 @@ import Card from "../../UI/Card";
 import "./Hours.css";
 import Sun from "@mui/icons-material/LightModeRounded";
 
-const Hours = () => {
+const Hours = (props) => {
   return (
     <Card className="hourly_card">
-      <p className="hours">9 PM</p>
+      <p className="hours">{props.time}</p>
       <Sun style={{ fontSize: "30px" }} />
       <p className="hours_temp">
-        5<sup>o</sup>
+        {props.temperature}
+        <sup>o</sup>
       </p>
     </Card>
   );

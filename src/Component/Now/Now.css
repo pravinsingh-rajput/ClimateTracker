@@ -11,13 +11,10 @@ p {
   margin-bottom: 8px;
 }
 
-.city_temp_container {
-  width: 100%;
-}
-
 .show_temp {
   font-size: 50px;
   margin: 5px 0px;
+  width: fit-content;
 }
 
 .climate_condition {
@@ -64,4 +61,16 @@ p {
   align-items: center;
   font-size: 12px;
   margin-left: 5px;
+}
+
+@media Screen and (max-width: 827px) {
+  .temp_data {
+    flex-direction: column-reverse;
+  }
+}
+
+@media screen and (max-width: 725px) {
+  .temp_data {
+    flex-direction: row;
+  }
 }

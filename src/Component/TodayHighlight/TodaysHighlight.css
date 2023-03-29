@@ -71,6 +71,23 @@ AirIcon {
   justify-content: space-between;
 }
 
+.lowercontainer {
+  padding: 5px 25px;
+  padding-bottom: 0px;
+  width: 100%;
+  justify-content: space-between;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+.sqCard {
+  width: 180px;
+  max-width: 200px;
+  height: 80px;
+}
+
 .sunrise_sunset {
   width: 100%;
   display: grid;
@@ -78,26 +95,58 @@ AirIcon {
   padding-bottom: 8px;
 }
 
-.sunrise,
-.sunset {
-  width: 160px;
-  margin: 5px;
-  display: flex;
-  flex-direction: row;
+@media screen and (max-width: 540px) {
+  .lowercontainer {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    padding: 5px 0px;
+    gap: 0px;
+    justify-content: space-between;
+  }
+
+  .qualtity_type {
+    display: none;
+  }
+
+  .sqCard {
+    width: 150px;
+    max-width: 200px;
+    height: 80px;
+  }
 }
 
-.sun_time,
-.moon_time {
-  display: flex;
-  flex-direction: column;
-  margin: 0px 15px;
-}
+@media screen and (max-width: 456px) {
+  .lowercontainer {
+    grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+    padding: 5px 0px;
 
-.sunset_time,
-.sunrise_time {
-  font-size: 20px;
-}
+    gap: 0px;
+  }
 
-.lowercontainer {
-  padding: 5px 25px;
-}
+  .qualtity_type {
+    display: none;
+  }
+
+  .sqCard {
+    width: 135px;
+    max-width: 135px;
+    height: 80px;
+  }
+
+  .highlight {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 15px;
+  }
+
+  .uppercontainer {
+    flex-direction: column;
+  }
+
+  .highlight_left_container,
+  .highlight_right_container {
+    background-color: #0d0d0da2;
+    border-radius: 5px;
+    width: 100%;
+    height: fit-content;
+  }
+} ;

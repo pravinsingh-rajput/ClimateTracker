@@ -4,8 +4,9 @@ import Card from "../../UI/Card";
 import SquareCard from "../../UI/SquareCard";
 import AirIcon from "@mui/icons-material/Air";
 import AirType from "./AirType";
-import Sun from "@mui/icons-material/WbSunnyOutlined";
-import Moon from "@mui/icons-material/NightlightOutlined";
+// import Sun from "@mui/icons-material/WbSunnyOutlined";
+// import Moon from "@mui/icons-material/NightlightOutlined";
+import RiseSet from "./RiseSet";
 
 const IconSize = {
   fontSize: "40px",
@@ -27,10 +28,10 @@ const TodaysHighlight = () => {
               <div className="airdata">
                 <AirIcon style={IconSize} />
                 <div className="airtype_container">
-                  <AirType />
-                  <AirType />
-                  <AirType />
-                  <AirType />
+                  <AirType title={"PM25"} titleData={"3.90"} />
+                  <AirType title={"SO2"} titleData={"7.75"} />
+                  <AirType title={"NO2"} titleData={"33.6"} />
+                  <AirType title={"O3"} titleData={"38.6"} />
                 </div>
               </div>
             </Card>
@@ -40,28 +41,36 @@ const TodaysHighlight = () => {
               </div>
               <div className="highlight_divider"> </div>
               <div className="sunrise_sunset">
-                <div className="sunrise">
-                  <Sun style={IconSize} />
-                  <p className="sun_time">
-                    <p className="title">Sunrise</p>
-                    <p className="sunrise_time">6:46 AM</p>
-                  </p>
-                </div>
-                <div className="sunrise">
-                  <Moon style={IconSize} />
-                  <p className="moon_time">
-                    <p className="title">Sunrise</p>
-                    <p className="sunset_time">6:46 AM</p>
-                  </p>
-                </div>
+                <RiseSet SunTitle={"Sunrise"} SunTime={"6:46 AM"} />
+                <RiseSet SunTitle={"Sunset"} SunTime={"5:59 PM"} />
               </div>
             </Card>
           </div>
           <div className="lowercontainer">
-            <SquareCard></SquareCard>
-            <SquareCard></SquareCard>
-            <SquareCard></SquareCard>
-            <SquareCard></SquareCard>
+            <SquareCard
+              className="sqCard"
+              highlightTitle={"Humidity"}
+              highlightTitleData={"82"}
+              parameter={"%"}
+            ></SquareCard>
+            <SquareCard
+              className="sqCard"
+              highlightTitle={"Pressure"}
+              highlightTitleData={"1025"}
+              parameter={"hPa"}
+            ></SquareCard>
+            <SquareCard
+              className="sqCard"
+              highlightTitle={"Visibility"}
+              highlightTitleData={"10"}
+              parameter={"km"}
+            ></SquareCard>
+            <SquareCard
+              className="sqCard"
+              highlightTitle={"Feels Like"}
+              highlightTitleData={"2"}
+              parameter={"°C"}
+            ></SquareCard>
           </div>
         </div>
       </div>

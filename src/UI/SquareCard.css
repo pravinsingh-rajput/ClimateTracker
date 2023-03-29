@@ -1,9 +1,7 @@
 .sqCard {
-  width: 140px;
   background-color: #0d0d0da2;
   margin: 4px;
   border-radius: 12px;
-  height: 80px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -18,4 +16,15 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-size: 22px;
+}
+
+.parameter {
+  font-size: 14px;
+}
+
+@media screen and (max-width: 425px) {
+  .icon_details {
+    font-size: 18px;
+  }
 }

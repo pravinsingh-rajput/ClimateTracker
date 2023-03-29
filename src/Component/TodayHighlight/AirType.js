@@ -1,11 +1,11 @@
 import React from "react";
 import "./Airtype.css";
 
-const AirType = () => {
+const AirType = (props) => {
   return (
     <div className="airtype">
-      <p className="title">PM25</p>
-      <p className="title_data">3.90</p>
+      <p className="title">{props.title}</p>
+      <p className="title_data">{props.titleData}</p>
     </div>
   );
 };

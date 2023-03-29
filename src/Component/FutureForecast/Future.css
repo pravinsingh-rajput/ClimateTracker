@@ -13,10 +13,14 @@
   margin-left: 6px;
 }
 
-sup {
-  font-size: 10px;
-}
-
 .forecast {
   width: 100%;
+}
+
+.future_temp,
+.future_date,
+.future_day {
+  /* border: 1px solid red; */
+  width: 45px;
+  margin-right: 2px;
 }

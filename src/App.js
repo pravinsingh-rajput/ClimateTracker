@@ -17,7 +17,7 @@ function App() {
         </div>
         <div className="right_container">
           <TodaysHighlight />
-          <h4 className="forecast_label">Today At</h4>
+          <h4 className="forecast_label todayLabel">Today At</h4>
           <HourlyTemp />
         </div>
       </div>

@@ -66,3 +66,8 @@ Input {
     margin-top: 12px;
   }
 }
+@media Screen and (max-width: 425px) {
+  .current_location {
+    padding: 4px 6px;
+  }
+}

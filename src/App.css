@@ -42,6 +42,10 @@
 }
 
 @media screen and (max-width: 725px) {
+  .header {
+    padding: 10px;
+  }
+
   .main_section {
     flex-direction: column;
   }
@@ -75,9 +79,13 @@
 }
 
 @media screen and (max-width: 425px) {
+  .header {
+    padding: 10px;
+  }
+
   .main_section {
     flex-direction: column;
-    padding: 6px;
+    padding: 10px;
   }
 
   .left_container {

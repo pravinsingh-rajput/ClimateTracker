@@ -9,7 +9,7 @@ import CurrentIcon from "@mui/icons-material/MyLocationOutlined";
 import Searchicon from "@mui/icons-material/TravelExploreSharp";
 
 const Weatherapp = (props) => {
-  const cityname = props.city;
+  const API = "7c0ae8ff52b23d405a854d1c3dc9a856";
 
   const [inputdata, setinputdata] = useState();
 
@@ -17,13 +17,42 @@ const Weatherapp = (props) => {
     setinputdata(e.target.value);
   };
 
-  let city;
+  let fetcheddata = "";
+  let airData = "";
 
-  const handleSubmit = (e) => {
+  let [data, setData] = useState({
+    temp: "",
+    condition: "",
+    city: "",
+    country: "",
+    lon: "",
+    lat: "",
+    sunrise: "",
+    sunset: "",
+    humidity: "",
+    pressure: "",
+    visibility: "",
+    feels_like: "",
+  });
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const getdata = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${inputdata}&units=metric&appid=${API}`
+    );
+
+    fetcheddata = await getdata.json();
+
+    const getAirData = await fetch(
+      `http://api.openweathermap.org/data/2.5/air_pollution?lat=${fetcheddata.coord.lat}&lon=${fetcheddata.coord.lon}&appid=${API}`
+    );
+
+    airData = await getAirData.json();
+
+    console.log(fetcheddata, airData);
+
     setinputdata("");
-    city = inputdata;
-    console.log(city);
   };
 
   return (
@@ -38,7 +67,6 @@ const Weatherapp = (props) => {
             <input
               type="text"
               placeholder="Search City..."
-              value={inputdata}
               onChange={onChangeHandler}
             />
             <Searchicon className="search_btn" onClick={handleSubmit} />
@@ -63,7 +91,6 @@ const Weatherapp = (props) => {
           <HourlyTemp />
         </div>
       </div>
-      <button onClick={console.log(cityname)}>Hellllll</button>
     </div>
   );
 };

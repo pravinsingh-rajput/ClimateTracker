@@ -52,6 +52,7 @@ p {
 
 .dateTime_container,
 .loc_container {
+  display: flex;
   margin: 5px 0px;
 }
 

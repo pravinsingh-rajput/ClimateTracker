@@ -26,11 +26,11 @@ const Now = () => {
           <div>
             <div className="dateTime_container">
               <LocationIcon />
-              <div className="date_time">Wednesday, 1 March</div>
+              <p className="date_time">Wednesday, 1 March</p>
             </div>
-            <div>
-              <CalendarIcon className="loc_container" />
-              <div className="detailed_loc">Mumbai, India</div>
+            <div className="loc_container">
+              <CalendarIcon />
+              <p className="detailed_loc">Mumbai, India</p>
             </div>
           </div>
         </div>

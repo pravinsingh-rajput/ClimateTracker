@@ -2,25 +2,11 @@ import "./App.css";
 import Weatherapp from "./Component/Weatherapp";
 
 function App() {
-  // const fetchdetails = () => {
-  //   axios
-  //     .get(
-  //       `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${key}`
-  //     )
-  //     .then((response) => {
-  //       console.log(response.data.main);
-  //       setData({
-  //         temp: "",
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
+  const API = process.env.REACT_APP_WEATHER_API_KEY;
 
   return (
     <div className="App">
-      <Weatherapp />
+      <Weatherapp apikey={API} />
     </div>
   );
 }

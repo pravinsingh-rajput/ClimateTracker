@@ -9,8 +9,6 @@ import CurrentIcon from "@mui/icons-material/MyLocationOutlined";
 import Searchicon from "@mui/icons-material/TravelExploreSharp";
 
 const Weatherapp = (props) => {
-  const API = "7c0ae8ff52b23d405a854d1c3dc9a856";
-
   const [inputdata, setinputdata] = useState();
 
   const onChangeHandler = (e) => {
@@ -39,13 +37,13 @@ const Weatherapp = (props) => {
     e.preventDefault();
 
     const getdata = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${inputdata}&units=metric&appid=${API}`
+      `https://api.openweathermap.org/data/2.5/weather?q=${inputdata}&units=metric&appid=${props.apikey}`
     );
 
     fetcheddata = await getdata.json();
 
     const getAirData = await fetch(
-      `http://api.openweathermap.org/data/2.5/air_pollution?lat=${fetcheddata.coord.lat}&lon=${fetcheddata.coord.lon}&appid=${API}`
+      `http://api.openweathermap.org/data/2.5/air_pollution?lat=${fetcheddata.coord.lat}&lon=${fetcheddata.coord.lon}&appid=${props.apikey}`
     );
 
     airData = await getAirData.json();

@@ -16,7 +16,7 @@ const Now = () => {
               <h1 className="show_temp">
                 5 °<span className="celcius">C</span>
               </h1>
-              <p className="climate_condition">Broken Cloud</p>
+              <div className="climate_condition">Broken Cloud</div>
             </div>
             <div className="condition_container">
               <ConditionIcon style={{ fontSize: "60px" }} />
@@ -24,14 +24,14 @@ const Now = () => {
           </div>
           <div className="divider"> </div>
           <div>
-            <p className="dateTime_container">
+            <div className="dateTime_container">
               <LocationIcon />
-              <p className="date_time">Wednesday, 1 March</p>
-            </p>
-            <p>
+              <div className="date_time">Wednesday, 1 March</div>
+            </div>
+            <div>
               <CalendarIcon className="loc_container" />
-              <p className="detailed_loc">Mumbai, India</p>
-            </p>
+              <div className="detailed_loc">Mumbai, India</div>
+            </div>
           </div>
         </div>
       </Card>

@@ -21,8 +21,8 @@ const TodaysHighlight = () => {
           <div className="uppercontainer">
             <Card className="highlight_left_container">
               <div className="airlable_container">
-                <p className="airlabel">Air Qulaity Index</p>
-                <p className="qualtity_type">Good</p>
+                <div className="airlabel">Air Qulaity Index</div>
+                <div className="qualtity_type">Good</div>
               </div>
               <div className="highlight_divider"> </div>
               <div className="airdata">
@@ -37,7 +37,7 @@ const TodaysHighlight = () => {
             </Card>
             <Card className="highlight_right_container">
               <div className="airlable_container">
-                <p className="airlabel">Sunrise & Sunset</p>
+                <div className="airlabel">Sunrise & Sunset</div>
               </div>
               <div className="highlight_divider"> </div>
               <div className="sunrise_sunset">

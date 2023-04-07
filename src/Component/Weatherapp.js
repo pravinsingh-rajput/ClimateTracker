@@ -9,16 +9,21 @@ import CurrentIcon from "@mui/icons-material/MyLocationOutlined";
 import Searchicon from "@mui/icons-material/TravelExploreSharp";
 
 const Weatherapp = (props) => {
-  const [inputdata, setinputdata] = useState();
+  const [inputValue, setInputValue] = useState("");
+  const [coordinate, setCoordinate] = useState({
+    lat: "",
+    lon: "",
+  });
+  const [usercoord, setUserCoord] = useState({
+    city: "",
+    country: "",
+  });
 
   const onChangeHandler = (e) => {
-    setinputdata(e.target.value);
+    setInputValue(e.target.value);
   };
 
-  let fetcheddata = "";
-  let airData = "";
-
-  let [data, setData] = useState({
+  const [fetched_data, setfetched_data] = useState({
     temp: "",
     condition: "",
     city: "",
@@ -31,26 +36,115 @@ const Weatherapp = (props) => {
     pressure: "",
     visibility: "",
     feels_like: "",
+    PM25: "",
+    SO2: "",
+    NO2: "",
+    O3: "",
   });
+
+  const displayairdata = (data) => {
+    console.log(data);
+  };
+
+  const databyname = (data) => {
+    console.log(data);
+    setfetched_data({
+      ...fetched_data,
+      temp: data.main.temp,
+      condition: "",
+      city: data.name,
+      country: data.sys.country,
+      lon: data.coord.lon,
+      lat: data.coord.lat,
+      sunrise: data.sys.sunrise,
+      sunset: data.sys.sunset,
+      humidity: data.main.humidity,
+      pressure: data.main.pressure,
+      visibility: data.visibility,
+      feels_like: data.main.feels_like,
+      PM25: "",
+      SO2: "",
+      NO2: "",
+      O3: "",
+    });
+  };
+
+  // Fetching data by input
+  const fetchbyname = () => {
+    return new Promise((resolve, reject) => {
+      console.log(inputValue);
+      fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&units=metric&appid=${props.apikey}`
+      )
+        .then((res) => res.json())
+        .then((data) => resolve(data))
+        .catch((data) => reject("Error"));
+    });
+  };
+
+  // Fetching air data
+  const fetchairdata = () => {
+    return new Promise((resolve, reject) => {
+      fetch(
+        `http://api.openweathermap.org/data/2.5/air_pollution?lat=${fetched_data.lat}&lon=${fetched_data.lon}&appid=${props.apikey}`
+      )
+        .then((res) => res.json())
+        .then((data) => resolve(data))
+        .catch((data) => reject("Error"));
+    });
+  };
+
+  // -----------------------------------------------------------------------------
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    fetchbyname().then(databyname);
 
-    const getdata = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${inputdata}&units=metric&appid=${props.apikey}`
-    );
+    setTimeout(() => {
+      fetchairdata().then(displayairdata);
+    }, 4000);
 
-    fetcheddata = await getdata.json();
+    setInputValue("");
+  };
 
-    const getAirData = await fetch(
-      `http://api.openweathermap.org/data/2.5/air_pollution?lat=${fetcheddata.coord.lat}&lon=${fetcheddata.coord.lon}&appid=${props.apikey}`
-    );
+  // ------------------------------------------------------------------
 
-    airData = await getAirData.json();
+  // Accessing User Location With coordinate
+  function getuserlocation() {
+    return new Promise((reslove, reject) => {
+      fetch(
+        `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${coordinate.lat}&longitude=${coordinate.lon}&localityLanguage=en`
+      )
+        .then((res) => res.json())
+        .then((data) => reslove(data))
+        .catch((data) => reslove("Error"));
+    });
+  }
 
-    console.log(fetcheddata, airData);
+  const displaydata = (fetchData) => {
+    setUserCoord({
+      ...usercoord,
+      city: fetchData.city,
+      country: fetchData.countryName,
+    });
+  };
 
-    setinputdata("");
+  // Getting Location Coordinate from user
+  const getlocation = () => {
+    const success = (position) => {
+      setCoordinate({
+        ...coordinate,
+        lat: position.coords.latitude,
+        lon: position.coords.longitude,
+      });
+    };
+    const error = () => {
+      console.log("Cancel");
+    };
+    navigator.geolocation.getCurrentPosition(success, error);
+
+    getuserlocation().then(displaydata);
+    fetchbyname().then(databyname);
   };
 
   return (
@@ -65,11 +159,12 @@ const Weatherapp = (props) => {
             <input
               type="text"
               placeholder="Search City..."
+              value={inputValue}
               onChange={onChangeHandler}
             />
             <Searchicon className="search_btn" onClick={handleSubmit} />
           </form>
-          <button className="current_location">
+          <button className="current_location" onClick={getlocation}>
             <CurrentIcon />
             <div className="loc_label">Current Location</div>
           </button>

@@ -1,28 +1,14 @@
-import React, { useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import Now from "./Now/Now";
 import Forecast from "./FutureForecast/Forecast";
 import TodaysHighlight from "./TodayHighlight/TodaysHighlight";
 import HourlyTemp from "./Hourly/HourlyTemp";
+import Header from "./Header/Header";
 import "./Weatherapp.css";
-import Icon from "@mui/icons-material/FilterDramaOutlined";
-import CurrentIcon from "@mui/icons-material/MyLocationOutlined";
-import Searchicon from "@mui/icons-material/TravelExploreSharp";
+const MyContext = createContext();
 
 const Weatherapp = (props) => {
-  const [inputValue, setInputValue] = useState("");
-  const [coordinate, setCoordinate] = useState({
-    lat: "",
-    lon: "",
-  });
-  const [usercoord, setUserCoord] = useState({
-    city: "",
-    country: "",
-  });
-
-  const onChangeHandler = (e) => {
-    setInputValue(e.target.value);
-  };
-
+  const [city, setCity] = useState("Mumbai");
   const [fetched_data, setfetched_data] = useState({
     temp: "",
     condition: "",
@@ -36,22 +22,19 @@ const Weatherapp = (props) => {
     pressure: "",
     visibility: "",
     feels_like: "",
+  });
+  const [fetchedairdata, setfetchedairdata] = useState({
     PM25: "",
     SO2: "",
     NO2: "",
     O3: "",
   });
 
-  const displayairdata = (data) => {
-    console.log(data);
-  };
-
   const databyname = (data) => {
-    console.log(data);
     setfetched_data({
       ...fetched_data,
       temp: data.main.temp,
-      condition: "",
+      condition: data.weather[0].main,
       city: data.name,
       country: data.sys.country,
       lon: data.coord.lon,
@@ -62,130 +45,71 @@ const Weatherapp = (props) => {
       pressure: data.main.pressure,
       visibility: data.visibility,
       feels_like: data.main.feels_like,
-      PM25: "",
-      SO2: "",
-      NO2: "",
-      O3: "",
+    });
+  };
+  const databyair = (data) => {
+    setfetchedairdata({
+      ...fetchedairdata,
+      PM25: data.list[0].components.pm2_5,
+      SO2: data.list[0].components.so2,
+      NO2: data.list[0].components.no2,
+      O3: data.list[0].components.o3,
     });
   };
 
-  // Fetching data by input
-  const fetchbyname = () => {
-    return new Promise((resolve, reject) => {
-      console.log(inputValue);
-      fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&units=metric&appid=${props.apikey}`
-      )
-        .then((res) => res.json())
-        .then((data) => resolve(data))
-        .catch((data) => reject("Error"));
-    });
+  const fetchbyname = async () => {
+    const citydata = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${props.apikey}`
+    ).then((res) => res.json());
+
+    const data = await citydata;
+    databyname(data);
+
+    // calling fetchairdata function here
+    fetchairdata(data.coord.lat, data.coord.lon);
   };
 
   // Fetching air data
-  const fetchairdata = () => {
-    return new Promise((resolve, reject) => {
-      fetch(
-        `http://api.openweathermap.org/data/2.5/air_pollution?lat=${fetched_data.lat}&lon=${fetched_data.lon}&appid=${props.apikey}`
-      )
-        .then((res) => res.json())
-        .then((data) => resolve(data))
-        .catch((data) => reject("Error"));
-    });
+  const fetchairdata = async (lat, lon) => {
+    const airdata = await fetch(
+      `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${props.apikey}`
+    ).then((res) => res.json());
+    const data = await airdata;
+    databyair(data);
   };
 
-  // -----------------------------------------------------------------------------
+  // Call fetchbyname function on component mount
+  useEffect(() => {
+    fetchbyname();
+  }, [city]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    fetchbyname().then(databyname);
+  ///////////////////////////////////////////////////////////////////////////////////////
 
-    setTimeout(() => {
-      fetchairdata().then(displayairdata);
-    }, 4000);
-
-    setInputValue("");
-  };
-
-  // ------------------------------------------------------------------
-
-  // Accessing User Location With coordinate
-  function getuserlocation() {
-    return new Promise((reslove, reject) => {
-      fetch(
-        `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${coordinate.lat}&longitude=${coordinate.lon}&localityLanguage=en`
-      )
-        .then((res) => res.json())
-        .then((data) => reslove(data))
-        .catch((data) => reslove("Error"));
-    });
-  }
-
-  const displaydata = (fetchData) => {
-    setUserCoord({
-      ...usercoord,
-      city: fetchData.city,
-      country: fetchData.countryName,
-    });
-  };
-
-  // Getting Location Coordinate from user
-  const getlocation = () => {
-    const success = (position) => {
-      setCoordinate({
-        ...coordinate,
-        lat: position.coords.latitude,
-        lon: position.coords.longitude,
-      });
-    };
-    const error = () => {
-      console.log("Cancel");
-    };
-    navigator.geolocation.getCurrentPosition(success, error);
-
-    getuserlocation().then(displaydata);
-    fetchbyname().then(databyname);
+  const headerdata = (data) => {
+    console.log(data);
+    setCity(data);
   };
 
   return (
-    <div>
-      <div className="header">
-        <div className="appname">
-          <Icon />
-          <h3>Weather App</h3>
-        </div>
-        <div className="loctaion_container">
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              placeholder="Search City..."
-              value={inputValue}
-              onChange={onChangeHandler}
-            />
-            <Searchicon className="search_btn" onClick={handleSubmit} />
-          </form>
-          <button className="current_location" onClick={getlocation}>
-            <CurrentIcon />
-            <div className="loc_label">Current Location</div>
-          </button>
+    <MyContext.Provider value={{ fetched_data, fetchedairdata }}>
+      <div>
+        <Header headerdata={headerdata} />
+        <div className="main_section">
+          <div className="left_container">
+            <Now className="now" />
+            <h4 className="forecast_label">5 Day Forecast</h4>
+            <Forecast className="forecast" />
+          </div>
+          <div className="right_container">
+            <TodaysHighlight />
+            <h4 className="forecast_label todayLabel">Today At</h4>
+            <HourlyTemp />
+          </div>
         </div>
       </div>
-
-      {/* Components */}
-      <div className="main_section">
-        <div className="left_container">
-          <Now className="now" />
-          <h4 className="forecast_label">5 Day Forecast</h4>
-          <Forecast className="forecast" />
-        </div>
-        <div className="right_container">
-          <TodaysHighlight />
-          <h4 className="forecast_label todayLabel">Today At</h4>
-          <HourlyTemp />
-        </div>
-      </div>
-    </div>
+    </MyContext.Provider>
   );
 };
 
+export { MyContext };
 export default Weatherapp;

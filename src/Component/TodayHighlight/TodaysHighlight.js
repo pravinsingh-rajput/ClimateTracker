@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./TodaysHighlight.css";
 import Card from "../../UI/Card";
 import SquareCard from "../../UI/SquareCard";
 import AirIcon from "@mui/icons-material/Air";
 import AirType from "./AirType";
-// import Sun from "@mui/icons-material/WbSunnyOutlined";
-// import Moon from "@mui/icons-material/NightlightOutlined";
+import { MyContext } from "../Weatherapp";
 import RiseSet from "./RiseSet";
 
 const IconSize = {
@@ -13,6 +12,24 @@ const IconSize = {
 };
 
 const TodaysHighlight = () => {
+  const { fetched_data, fetchedairdata } = useContext(MyContext);
+
+  const unixconvert = (time) => {
+    const timestamp = time;
+    const date = new Date(timestamp * 1000);
+
+    // const date = new Date(fetched_data.sunrise);
+    const options = {
+      hour: "numeric",
+      minute: "numeric",
+    };
+    const formattedDate = new Intl.DateTimeFormat("en-us", options).format(
+      date
+    );
+
+    return formattedDate;
+  };
+
   return (
     <Card className="highlight">
       <div className="today_highlight_container">
@@ -22,16 +39,15 @@ const TodaysHighlight = () => {
             <Card className="highlight_left_container">
               <div className="airlable_container">
                 <div className="airlabel">Air Qulaity Index</div>
-                <div className="qualtity_type">Good</div>
               </div>
               <div className="highlight_divider"> </div>
               <div className="airdata">
                 <AirIcon style={IconSize} />
                 <div className="airtype_container">
-                  <AirType title={"PM25"} titleData={"3.90"} />
-                  <AirType title={"SO2"} titleData={"7.75"} />
-                  <AirType title={"NO2"} titleData={"33.6"} />
-                  <AirType title={"O3"} titleData={"38.6"} />
+                  <AirType title={"PM25"} titleData={fetchedairdata.PM25} />
+                  <AirType title={"SO2"} titleData={fetchedairdata.SO2} />
+                  <AirType title={"NO2"} titleData={fetchedairdata.NO2} />
+                  <AirType title={"O3"} titleData={fetchedairdata.O3} />
                 </div>
               </div>
             </Card>
@@ -41,8 +57,14 @@ const TodaysHighlight = () => {
               </div>
               <div className="highlight_divider"> </div>
               <div className="sunrise_sunset">
-                <RiseSet SunTitle={"Sunrise"} SunTime={"6:46 AM"} />
-                <RiseSet SunTitle={"Sunset"} SunTime={"5:59 PM"} />
+                <RiseSet
+                  SunTitle={"Sunrise"}
+                  SunTime={unixconvert(fetched_data.sunrise)}
+                />
+                <RiseSet
+                  SunTitle={"Sunset"}
+                  SunTime={unixconvert(fetched_data.sunset)}
+                />
               </div>
             </Card>
           </div>
@@ -50,25 +72,25 @@ const TodaysHighlight = () => {
             <SquareCard
               className="sqCard"
               highlightTitle={"Humidity"}
-              highlightTitleData={"82"}
+              highlightTitleData={fetched_data.humidity}
               parameter={"%"}
             ></SquareCard>
             <SquareCard
               className="sqCard"
               highlightTitle={"Pressure"}
-              highlightTitleData={"1025"}
+              highlightTitleData={fetched_data.pressure}
               parameter={"hPa"}
             ></SquareCard>
             <SquareCard
               className="sqCard"
               highlightTitle={"Visibility"}
-              highlightTitleData={"10"}
+              highlightTitleData={fetched_data.visibility}
               parameter={"km"}
             ></SquareCard>
             <SquareCard
               className="sqCard"
               highlightTitle={"Feels Like"}
-              highlightTitleData={"2"}
+              highlightTitleData={fetched_data.feels_like}
               parameter={"°C"}
             ></SquareCard>
           </div>

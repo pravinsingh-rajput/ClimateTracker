@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Airtype.css";
+import { MyContext } from "../Weatherapp";
 
 const AirType = (props) => {
+  const { fetchedairdata } = useContext(MyContext);
   return (
     <div className="airtype">
       <p className="title">{props.title}</p>

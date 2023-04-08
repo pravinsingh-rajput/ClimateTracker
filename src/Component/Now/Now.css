@@ -4,6 +4,7 @@ p {
 
 .temp_data {
   display: flex;
+  justify-content: space-between;
 }
 
 .box_label {
@@ -12,9 +13,10 @@ p {
 }
 
 .show_temp {
-  font-size: 50px;
+  font-size: 30px;
   margin: 5px 0px;
   width: fit-content;
+  margin-bottom: 15px;
 }
 
 .climate_condition {
@@ -32,15 +34,14 @@ p {
 
 .condition_container {
   height: max-content;
-  width: 50%;
-
+  width: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .celcius {
-  font-size: 30px;
+  font-size: 25px;
 }
 
 .divider {
@@ -68,10 +69,24 @@ p {
   .temp_data {
     flex-direction: column-reverse;
   }
+  .show_temp {
+    font-size: 25px;
+  }
+  .condition_container {
+    height: max-content;
+    width: fit-content;
+  }
 }
 
 @media screen and (max-width: 725px) {
   .temp_data {
-    flex-direction: row;
+    flex-direction: column-reverse;
+  }
+  .show_temp {
+    font-size: 30px;
+  }
+  .condition_container {
+    height: max-content;
+    width: fit-content;
   }
 }

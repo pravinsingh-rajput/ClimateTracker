@@ -23,9 +23,10 @@ const TodaysHighlight = () => {
       hour: "numeric",
       minute: "numeric",
     };
-    const formattedDate = new Intl.DateTimeFormat("en-us", options).format(
-      date
-    );
+    const formattedDate = new Intl.DateTimeFormat(
+      navigator.language,
+      options
+    ).format(date);
 
     return formattedDate;
   };

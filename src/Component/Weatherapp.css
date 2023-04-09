@@ -36,6 +36,15 @@
     padding: 10px;
   }
 
+  .left_container {
+    width: 30%;
+    max-width: 100%;
+  }
+
+  .right_container {
+    width: 70%;
+  }
+
   .main_section {
     flex-direction: column;
   }
@@ -92,7 +101,7 @@
 
   .now,
   .forecast {
-    width: 500px;
+    width: 100%;
   }
 
   .right_container {

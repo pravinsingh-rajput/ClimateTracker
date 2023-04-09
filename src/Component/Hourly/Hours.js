@@ -1,7 +1,6 @@
 import React from "react";
 import Card from "../../UI/Card";
 import "./Hours.css";
-import Sun from "@mui/icons-material/LightModeRounded";
 
 const Hours = (props) => {
   return (

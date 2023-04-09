@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import "./Header.css";
 import Icon from "@mui/icons-material/FilterDramaOutlined";
 import CurrentIcon from "@mui/icons-material/MyLocationOutlined";
@@ -8,8 +8,6 @@ const Header = (props) => {
   /////////////////////////////////////////////////////////
   const [inputValue, setInputValue] = useState(""); // UserInput field
   const [city, setCity] = useState(""); // UserInput field
-
-  let position;
 
   const onChangeHandler = (e) => {
     setInputValue(e.target.value);

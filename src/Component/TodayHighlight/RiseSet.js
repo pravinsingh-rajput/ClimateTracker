@@ -1,11 +1,5 @@
 import React from "react";
 import "./RiseSet.css";
-import Sun from "@mui/icons-material/WbSunnyOutlined";
-// import Moon from "@mui/icons-material/NightlightOutlined";
-
-const IconSize = {
-  fontSize: "40px",
-};
 
 const RiseSet = (props) => {
   return (

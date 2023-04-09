@@ -65,6 +65,11 @@ p {
   margin-left: 5px;
 }
 
+/* 
+.seach_temp_data {
+  width: 50%;
+} */
+
 @media Screen and (max-width: 827px) {
   .temp_data {
     flex-direction: column-reverse;
@@ -73,8 +78,7 @@ p {
     font-size: 25px;
   }
   .condition_container {
-    height: max-content;
-    width: fit-content;
+    width: 180px;
   }
 }
 
@@ -85,8 +89,10 @@ p {
   .show_temp {
     font-size: 30px;
   }
+}
+
+@media screen and (max-width: 425px) {
   .condition_container {
-    height: max-content;
-    width: fit-content;
+    width: 100%;
   }
 }

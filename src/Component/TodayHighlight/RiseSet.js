@@ -10,7 +10,7 @@ const IconSize = {
 const RiseSet = (props) => {
   return (
     <div className="sunrise">
-      <Sun style={IconSize} />
+      <p>{props.seticon}</p>
       <div className="sun_time">
         <p className="title">{props.SunTitle}</p>
         <p className="sunrise_time">{props.SunTime}</p>

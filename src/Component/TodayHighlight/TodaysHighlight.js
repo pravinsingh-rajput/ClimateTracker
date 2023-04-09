@@ -7,6 +7,14 @@ import AirType from "./AirType";
 import { MyContext } from "../Weatherapp";
 import RiseSet from "./RiseSet";
 
+import HumidityIcon from "@mui/icons-material/OpacityOutlined";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import FeelslikeIcon from "@mui/icons-material/DeviceThermostatSharp";
+import PressureIcon from "@mui/icons-material/CompressSharp";
+
+import SunrisetIcon from "@mui/icons-material/WbSunnyOutlined";
+import SunsetIcon from "@mui/icons-material/NightlightOutlined";
+
 const IconSize = {
   fontSize: "40px",
 };
@@ -59,10 +67,12 @@ const TodaysHighlight = () => {
               <div className="highlight_divider"> </div>
               <div className="sunrise_sunset">
                 <RiseSet
+                  seticon={<SunrisetIcon style={IconSize} />}
                   SunTitle={"Sunrise"}
                   SunTime={unixconvert(fetched_data.sunrise)}
                 />
                 <RiseSet
+                  seticon={<SunsetIcon style={IconSize} />}
                   SunTitle={"Sunset"}
                   SunTime={unixconvert(fetched_data.sunset)}
                 />
@@ -73,24 +83,28 @@ const TodaysHighlight = () => {
             <SquareCard
               className="sqCard"
               highlightTitle={"Humidity"}
+              icon={<HumidityIcon />}
               highlightTitleData={fetched_data.humidity}
               parameter={"%"}
             ></SquareCard>
             <SquareCard
               className="sqCard"
               highlightTitle={"Pressure"}
+              icon={<PressureIcon />}
               highlightTitleData={fetched_data.pressure}
               parameter={"hPa"}
             ></SquareCard>
             <SquareCard
               className="sqCard"
               highlightTitle={"Visibility"}
+              icon={<VisibilityIcon />}
               highlightTitleData={fetched_data.visibility}
               parameter={"km"}
             ></SquareCard>
             <SquareCard
               className="sqCard"
               highlightTitle={"Feels Like"}
+              icon={<FeelslikeIcon />}
               highlightTitleData={fetched_data.feels_like}
               parameter={"°C"}
             ></SquareCard>

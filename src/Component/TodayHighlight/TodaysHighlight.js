@@ -20,24 +20,7 @@ const IconSize = {
 };
 
 const TodaysHighlight = () => {
-  const { fetched_data, fetchedairdata } = useContext(MyContext);
-
-  const unixconvert = (time) => {
-    const timestamp = time;
-    const date = new Date(timestamp * 1000);
-
-    // const date = new Date(fetched_data.sunrise);
-    const options = {
-      hour: "numeric",
-      minute: "numeric",
-    };
-    const formattedDate = new Intl.DateTimeFormat(
-      navigator.language,
-      options
-    ).format(date);
-
-    return formattedDate;
-  };
+  const { fetched_data } = useContext(MyContext);
 
   return (
     <Card className="highlight">
@@ -48,15 +31,16 @@ const TodaysHighlight = () => {
             <Card className="highlight_left_container">
               <div className="airlable_container">
                 <div className="airlabel">Air Qulaity Index</div>
+                <p className="unit">μg/m3</p>
               </div>
               <div className="highlight_divider"> </div>
               <div className="airdata">
                 <AirIcon style={IconSize} />
                 <div className="airtype_container">
-                  <AirType title={"PM25"} titleData={fetchedairdata.PM25} />
-                  <AirType title={"SO2"} titleData={fetchedairdata.SO2} />
-                  <AirType title={"NO2"} titleData={fetchedairdata.NO2} />
-                  <AirType title={"O3"} titleData={fetchedairdata.O3} />
+                  <AirType title={"PM25"} titleData={fetched_data.PM25} />
+                  <AirType title={"SO2"} titleData={fetched_data.SO2} />
+                  <AirType title={"NO2"} titleData={fetched_data.NO2} />
+                  <AirType title={"O3"} titleData={fetched_data.O3} />
                 </div>
               </div>
             </Card>
@@ -69,12 +53,12 @@ const TodaysHighlight = () => {
                 <RiseSet
                   seticon={<SunrisetIcon style={IconSize} />}
                   SunTitle={"Sunrise"}
-                  SunTime={unixconvert(fetched_data.sunrise)}
+                  SunTime={fetched_data.sunrise}
                 />
                 <RiseSet
                   seticon={<SunsetIcon style={IconSize} />}
                   SunTitle={"Sunset"}
-                  SunTime={unixconvert(fetched_data.sunset)}
+                  SunTime={fetched_data.sunset}
                 />
               </div>
             </Card>

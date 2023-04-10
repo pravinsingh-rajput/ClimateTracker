@@ -64,13 +64,14 @@ const Now = () => {
           <div className="divider"> </div>
           <div>
             <div className="dateTime_container">
-              <LocationIcon />
+              <CalendarIcon />
               <p className="date_time">{currentdate}</p>
             </div>
             <div className="loc_container">
-              <CalendarIcon />
+              <LocationIcon />
               <p className="detailed_loc">
-                {fetched_data.city}, {fetched_data.country}
+                {fetched_data.city}, {fetched_data.region},{" "}
+                {fetched_data.country}
               </p>
             </div>
           </div>

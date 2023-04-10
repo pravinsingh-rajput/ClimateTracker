@@ -37,6 +37,10 @@
   margin: 5px;
 }
 
+.unit {
+  text-align: center;
+}
+
 .highlight_divider {
   width: 100%;
   height: 2px;

@@ -14,110 +14,92 @@ const Weatherapp = (props) => {
     condition: "",
     city: "",
     country: "",
+    region: "",
     lon: "",
     lat: "",
+    timezone: "",
+    localtime: "",
     sunrise: "",
     sunset: "",
     humidity: "",
     pressure: "",
     visibility: "",
     feels_like: "",
-  });
-  const [fetchedairdata, setfetchedairdata] = useState({
     PM25: "",
     SO2: "",
     NO2: "",
     O3: "",
+    hour00: "",
+    hour03: "",
+    hour06: "",
+    hour09: "",
+    hour12: "",
+    hour15: "",
+    hour18: "",
+    hour21: "",
+    nextday1date: "",
+    nextday1maxtemp: "",
+    nextday1mintemp: "",
+    nextday2date: "",
+    nextday2maxtemp: "",
+    nextday2mintemp: "",
   });
 
-  const databyname = (data) => {
+  const upadtedata = (data) => {
     setfetched_data({
       ...fetched_data,
-      temp: data.main.temp,
-      condition: data.weather[0].main,
-      city: data.name,
-      country: data.sys.country,
-      lon: data.coord.lon,
-      lat: data.coord.lat,
-      sunrise: data.sys.sunrise,
-      sunset: data.sys.sunset,
-      humidity: data.main.humidity,
-      pressure: data.main.pressure,
-      visibility: data.visibility,
-      feels_like: data.main.feels_like,
-    });
-  };
-  const databyair = (data) => {
-    setfetchedairdata({
-      ...fetchedairdata,
-      PM25: data.list[0].components.pm2_5,
-      SO2: data.list[0].components.so2,
-      NO2: data.list[0].components.no2,
-      O3: data.list[0].components.o3,
+      temp: data.current.temp_c,
+      condition: data.current.condition.text,
+      city: data.location.name,
+      country: data.location.country,
+      region: data.location.region,
+      lon: data.location.lon,
+      lat: data.location.lat,
+      timezone: data.location.tz_id,
+      localtime: data.location.localtime,
+      //////////////////////////////////////////
+      sunrise: data.forecast.forecastday[0].astro.sunrise,
+      sunset: data.forecast.forecastday[0].astro.sunset,
+      //////////////////////////////////
+      humidity: data.current.humidity,
+      pressure: data.current.pressure_mb,
+      visibility: data.current.vis_km,
+      feels_like: data.current.feelslike_c,
+      //////////////////////////////////
+      PM25: Number(data.current.air_quality.pm2_5).toFixed(2),
+      SO2: Number(data.current.air_quality.so2).toFixed(2),
+      NO2: Number(data.current.air_quality.no2).toFixed(2),
+      O3: Number(data.current.air_quality.o3).toFixed(2),
+      //////////////////////////////////
+      hour00: data.forecast.forecastday[0].hour[0].temp_c,
+      hour03: data.forecast.forecastday[0].hour[3].temp_c,
+      hour06: data.forecast.forecastday[0].hour[6].temp_c,
+      hour09: data.forecast.forecastday[0].hour[9].temp_c,
+      hour12: data.forecast.forecastday[0].hour[12].temp_c,
+      hour15: data.forecast.forecastday[0].hour[15].temp_c,
+      hour18: data.forecast.forecastday[0].hour[18].temp_c,
+      hour21: data.forecast.forecastday[0].hour[21].temp_c,
+      // ///////////////////////////////////////////////
+      nextday1date: data.forecast.forecastday[1].date,
+      nextday1maxtemp: data.forecast.forecastday[1].day.maxtemp_c,
+      nextday1mintemp: data.forecast.forecastday[1].day.mintemp_c,
+      nextday2date: data.forecast.forecastday[2].date,
+      nextday2maxtemp: data.forecast.forecastday[2].day.maxtemp_c,
+      nextday2mintemp: data.forecast.forecastday[2].day.mintemp_c,
     });
   };
 
-  const fetchbyname = async () => {
+  const fetchdata = async () => {
     const citydata = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${props.apikey}`
+      `https://api.weatherapi.com/v1/forecast.json?key=${props.apikey}&q=${city}&days=5&aqi=yes`
     ).then((res) => res.json());
-    const data1 = await citydata;
-    databyname(await data1);
-    ////////////////////////////////
-    ////////////////////////////////
-    // calling fetchairdata function here
-    fetchairdata(data1.coord.lat, data1.coord.lon);
-  };
-
-  // Fetching air data
-  const fetchairdata = async (lat, lon) => {
-    const airdata = await fetch(
-      `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${props.apikey}`
-    ).then((res) => res.json());
-    const data = await airdata;
-    databyair(await data);
-    console.log(fetchedairdata);
-  };
-
-  /////////////////////////////////////////////////////////////////////////////////////
-
-  const [timetemp, setTimeTemp] = useState({
-    temp1: "",
-    temp2: "",
-    temp3: "",
-    temp4: "",
-    temp5: "",
-    temp6: "",
-    temp7: "",
-    temp8: "",
-  });
-
-  const updateTimetemp = (data) => {
-    setTimeTemp({
-      temp1: data[0].main.temp,
-      temp2: data[1].main.temp,
-      temp3: data[2].main.temp,
-      temp4: data[3].main.temp,
-      temp5: data[4].main.temp,
-      temp6: data[5].main.temp,
-      temp7: data[6].main.temp,
-      temp8: data[7].main.temp,
-    });
-  };
-
-  const fetchtimetemp = async () => {
-    const futuretemp = await fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${props.apikey}&units=metric`
-    ).then((res) => res.json());
-    const data2 = await futuretemp.list;
-    updateTimetemp(data2);
+    upadtedata(citydata);
   };
 
   ///////////////////////////////////////////////////////////////////////////////////////
 
   useEffect(() => {
-    fetchbyname();
-    fetchtimetemp();
+    fetchdata();
   }, [city]);
 
   const headerdata = (data) => {
@@ -125,13 +107,13 @@ const Weatherapp = (props) => {
   };
 
   return (
-    <MyContext.Provider value={{ fetched_data, fetchedairdata, timetemp }}>
+    <MyContext.Provider value={{ fetched_data }}>
       <div>
         <Header headerdata={headerdata} />
         <div className="main_section">
           <div className="left_container">
             <Now className="now" />
-            <h4 className="forecast_label future_label">5 Day Forecast</h4>
+            <h4 className="forecast_label future_label"> Future Forecast</h4>
             <Forecast className="forecast" />
           </div>
           <div className="right_container">

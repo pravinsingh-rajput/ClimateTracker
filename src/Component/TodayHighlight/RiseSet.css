@@ -1,6 +1,6 @@
 .sunrise,
 .sunset {
-  width: 160px;
+  width: fit-content;
   margin: 5px;
   display: flex;
   flex-direction: row;
@@ -15,5 +15,5 @@
 .moon_time {
   display: flex;
   flex-direction: column;
-  margin: 0px 15px;
+  margin: 0px 5px;
 }

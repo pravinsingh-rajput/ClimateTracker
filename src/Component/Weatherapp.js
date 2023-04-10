@@ -61,12 +61,12 @@ const Weatherapp = (props) => {
     const citydata = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${props.apikey}`
     ).then((res) => res.json());
-
-    const data = await citydata;
-    databyname(data);
-
+    const data1 = await citydata;
+    databyname(await data1);
+    ////////////////////////////////
+    ////////////////////////////////
     // calling fetchairdata function here
-    fetchairdata(data.coord.lat, data.coord.lon);
+    fetchairdata(data1.coord.lat, data1.coord.lon);
   };
 
   // Fetching air data
@@ -75,29 +75,63 @@ const Weatherapp = (props) => {
       `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${props.apikey}`
     ).then((res) => res.json());
     const data = await airdata;
-    databyair(data);
+    databyair(await data);
+    console.log(fetchedairdata);
   };
 
-  // Call fetchbyname function on component mount
-  useEffect(() => {
-    fetchbyname();
-  }, [city]);
+  /////////////////////////////////////////////////////////////////////////////////////
+
+  const [timetemp, setTimeTemp] = useState({
+    temp1: "",
+    temp2: "",
+    temp3: "",
+    temp4: "",
+    temp5: "",
+    temp6: "",
+    temp7: "",
+    temp8: "",
+  });
+
+  const updateTimetemp = (data) => {
+    setTimeTemp({
+      temp1: data[0].main.temp,
+      temp2: data[1].main.temp,
+      temp3: data[2].main.temp,
+      temp4: data[3].main.temp,
+      temp5: data[4].main.temp,
+      temp6: data[5].main.temp,
+      temp7: data[6].main.temp,
+      temp8: data[7].main.temp,
+    });
+  };
+
+  const fetchtimetemp = async () => {
+    const futuretemp = await fetch(
+      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${props.apikey}&units=metric`
+    ).then((res) => res.json());
+    const data2 = await futuretemp.list;
+    updateTimetemp(data2);
+  };
 
   ///////////////////////////////////////////////////////////////////////////////////////
 
+  useEffect(() => {
+    fetchbyname();
+    fetchtimetemp();
+  }, [city]);
+
   const headerdata = (data) => {
-    console.log(data);
     setCity(data);
   };
 
   return (
-    <MyContext.Provider value={{ fetched_data, fetchedairdata }}>
+    <MyContext.Provider value={{ fetched_data, fetchedairdata, timetemp }}>
       <div>
         <Header headerdata={headerdata} />
         <div className="main_section">
           <div className="left_container">
             <Now className="now" />
-            <h4 className="forecast_label">5 Day Forecast</h4>
+            <h4 className="forecast_label future_label">5 Day Forecast</h4>
             <Forecast className="forecast" />
           </div>
           <div className="right_container">

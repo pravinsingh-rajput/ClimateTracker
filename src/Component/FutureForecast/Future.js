@@ -1,16 +1,25 @@
 import React from "react";
 import "./Future.css";
-import FutureIcon from "@mui/icons-material/Thunderstorm";
 
 const Future = (props) => {
   return (
     <div className="future_data">
-      <div className="icon_temp_container">
-        <FutureIcon className="future_icon" />
-        <p className="future_temp">{props.FutureTemp}</p>
+      <div className="future_container">
+        <h4 style={{ color: "#4DD637" }}>{props.date}</h4>
+        <div className="min_max_conatiner">
+          <div className="min_container">
+            <p>
+              min: <span className="min_temp"> {props.min}°C</span>
+            </p>
+          </div>
+          <div className="max_container">
+            <p>
+              max: <span className="max_temp"> {props.max}°C</span>
+            </p>
+          </div>
+        </div>
+        <div className="divider"></div>
       </div>
-      <div className="future_date">{props.FutureDate}</div>
-      <div className="future_day">{props.FutureDay}</div>
     </div>
   );
 };

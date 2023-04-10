@@ -2,31 +2,28 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 8px 0px;
+  /* margin: 8px 0px; */
   padding: 4px 0px;
   width: 100%;
-  font-size: 12px;
+  font-size: 14px;
 }
-
-.future_temp {
-  font-size: 16px;
-  margin-left: 6px;
-}
-
-.icon_temp_container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.forecast {
+.future_container {
   width: 100%;
 }
 
-.future_temp,
-.future_date,
-.future_day {
-  /* border: 1px solid red; */
-  width: 45px;
-  margin-right: 2px;
+.min_max_conatiner {
+  margin-top: 5px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.min_container,
+.max_conatiner {
+  width: 50%;
+}
+
+.min_temp,
+.max_temp {
+  margin-left: 4px;
+  font-size: 18px;
 }

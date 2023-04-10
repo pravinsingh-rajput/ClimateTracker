@@ -31,6 +31,10 @@
   margin: 25px 5px;
 }
 
+.future_label {
+  margin: 20px 5px;
+}
+
 @media screen and (max-width: 725px) {
   .header {
     padding: 10px;

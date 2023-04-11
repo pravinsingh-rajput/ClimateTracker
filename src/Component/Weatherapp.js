@@ -8,7 +8,10 @@ import "./Weatherapp.css";
 const MyContext = createContext();
 
 const Weatherapp = (props) => {
-  const [city, setCity] = useState("Mumbai");
+  const [city, setCity] = useState(() => {
+    return localStorage.getItem("city") || "Mumbai";
+  });
+  localStorage.setItem("city", city);
   const [fetched_data, setfetched_data] = useState({
     temp: "",
     condition: "",

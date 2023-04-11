@@ -35,11 +35,7 @@
   margin: 10px 5px;
 }
 
-@media screen and (max-width: 725px) {
-  .header {
-    padding: 10px;
-  }
-
+@media screen and (max-width: 1000px) {
   .left_container {
     width: 30%;
     max-width: 100%;
@@ -47,6 +43,12 @@
 
   .right_container {
     width: 70%;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .header {
+    padding: 10px;
   }
 
   .main_section {

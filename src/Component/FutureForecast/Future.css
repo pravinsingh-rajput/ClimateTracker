@@ -2,7 +2,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* margin: 8px 0px; */
   padding: 4px 0px;
   width: 100%;
   font-size: 14px;
@@ -26,4 +25,17 @@
 .max_temp {
   margin-left: 4px;
   font-size: 18px;
+}
+
+@media screen and (max-width: 532px) {
+  .min_temp,
+  .max_temp {
+    margin-left: 3px;
+    font-size: 15px;
+  }
+  .otherinfo,
+  .timezone,
+  .localtime {
+    font-size: 14px;
+  }
 }

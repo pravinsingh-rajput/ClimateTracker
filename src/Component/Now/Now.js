@@ -6,8 +6,8 @@ import Card from "../../UI/Card";
 import { MyContext } from "../Weatherapp";
 import sun from "../../Animations/sun.json";
 import cloudsun from "../../Animations/cloudsun.json";
-import rain from "../../Animations/rain.json";
-// import cloudy from "../../Animations/Cloudy.json";
+// import rain from "../../Animations/rain.json";
+import cloudy from "../../Animations/Cloudy.json";
 import partlycloudy from "../../Animations/partlycloudy.json";
 import snow from "../../Animations/snow.json";
 
@@ -40,7 +40,7 @@ const Now = () => {
   } else if (temp < 15 && temp > 10) {
     animationicon = partlycloudy;
   } else if (temp <= 10 && temp > 5) {
-    animationicon = rain;
+    animationicon = cloudy;
   } else if (temp <= 5) {
     animationicon = snow;
   }

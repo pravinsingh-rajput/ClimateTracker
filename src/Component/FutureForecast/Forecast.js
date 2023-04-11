@@ -25,7 +25,7 @@ const Forecast = () => {
       </Card>
       <h4 className="otherinfolabel">Other info</h4>
       <Card>
-        <div className="forecast">
+        <div className="otherinfo_conatiner">
           <div className="otherinfo">
             <p>Lat: {fetched_data.lat}</p>
             <p>Lon: {fetched_data.lon}</p>

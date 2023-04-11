@@ -73,9 +73,6 @@ AirIcon {
   margin: 20px 0px;
   display: flex;
   justify-content: space-between;
-}
-
-.lowercontainer {
   padding: 5px 25px;
   padding-bottom: 0px;
   width: 100%;
@@ -84,12 +81,6 @@ AirIcon {
   justify-items: center;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 10px;
-}
-
-.sqCard {
-  width: 180px;
-  max-width: 200px;
-  height: 80px;
 }
 
 .sunrise_sunset {
@@ -110,12 +101,6 @@ AirIcon {
   .qualtity_type {
     display: none;
   }
-
-  .sqCard {
-    width: 150px;
-    max-width: 200px;
-    height: 80px;
-  }
 }
 
 @media screen and (max-width: 456px) {
@@ -130,12 +115,6 @@ AirIcon {
     display: none;
   }
 
-  .sqCard {
-    width: 135px;
-    max-width: 135px;
-    height: 80px;
-  }
-
   .highlight {
     width: 100%;
     padding: 8px 10px;
@@ -148,7 +127,7 @@ AirIcon {
 
   .highlight_left_container,
   .highlight_right_container {
-    background-color: #0d0d0da2;
+    background-color: #0d0d0dee;
     border-radius: 5px;
     width: 100%;
     height: fit-content;

@@ -1,11 +1,11 @@
 import React from "react";
-import Card from "./Card";
-import "./SquareCard.css";
+import Card from "../../UI/Card";
+import "./OtherType.css";
 
-const SquareCard = (props) => {
+const OtherType = (props) => {
   return (
-    <Card className="sqCard">
-      <p className="card_title">{props.highlightTitle}</p>
+    <Card className="othertype_caontainer">
+      <p className="othertype_title">{props.highlightTitle}</p>
       <div className="icon_details">
         <p>{props.icon}</p>
         <p className="icon_data">
@@ -17,4 +17,4 @@ const SquareCard = (props) => {
   );
 };
 
-export default SquareCard;
+export default OtherType;

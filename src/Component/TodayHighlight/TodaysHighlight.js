@@ -1,17 +1,15 @@
 import React, { useContext } from "react";
 import "./TodaysHighlight.css";
 import Card from "../../UI/Card";
-import SquareCard from "../../UI/SquareCard";
 import AirIcon from "@mui/icons-material/Air";
 import AirType from "./AirType";
 import { MyContext } from "../Weatherapp";
 import RiseSet from "./RiseSet";
-
+import OtherType from "./OtherType";
 import HumidityIcon from "@mui/icons-material/OpacityOutlined";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import FeelslikeIcon from "@mui/icons-material/DeviceThermostatSharp";
 import PressureIcon from "@mui/icons-material/CompressSharp";
-
 import SunrisetIcon from "@mui/icons-material/WbSunnyOutlined";
 import SunsetIcon from "@mui/icons-material/NightlightOutlined";
 
@@ -64,34 +62,30 @@ const TodaysHighlight = () => {
             </Card>
           </div>
           <div className="lowercontainer">
-            <SquareCard
-              className="sqCard"
+            <OtherType
               highlightTitle={"Humidity"}
               icon={<HumidityIcon />}
               highlightTitleData={fetched_data.humidity}
               parameter={"%"}
-            ></SquareCard>
-            <SquareCard
-              className="sqCard"
+            ></OtherType>
+            <OtherType
               highlightTitle={"Pressure"}
               icon={<PressureIcon />}
               highlightTitleData={fetched_data.pressure}
               parameter={"hPa"}
-            ></SquareCard>
-            <SquareCard
-              className="sqCard"
+            ></OtherType>
+            <OtherType
               highlightTitle={"Visibility"}
               icon={<VisibilityIcon />}
               highlightTitleData={fetched_data.visibility}
               parameter={"km"}
-            ></SquareCard>
-            <SquareCard
-              className="sqCard"
+            ></OtherType>
+            <OtherType
               highlightTitle={"Feels Like"}
               icon={<FeelslikeIcon />}
               highlightTitleData={fetched_data.feels_like}
               parameter={"°C"}
-            ></SquareCard>
+            ></OtherType>
           </div>
         </div>
       </div>

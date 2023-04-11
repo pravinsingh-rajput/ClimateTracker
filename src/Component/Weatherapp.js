@@ -8,10 +8,15 @@ import "./Weatherapp.css";
 const MyContext = createContext();
 
 const Weatherapp = (props) => {
+  // Getting City Value from userinput, Current location, local storage
   const [city, setCity] = useState(() => {
     return localStorage.getItem("city") || "Mumbai";
   });
+
+  // Storing Recent City Value to Local Storge
   localStorage.setItem("city", city);
+
+  // Storing all the required Fetch data
   const [fetched_data, setfetched_data] = useState({
     temp: "",
     condition: "",
@@ -48,6 +53,7 @@ const Weatherapp = (props) => {
     nextday2mintemp: "",
   });
 
+  // function for Storing all the required Fetch data
   const upadtedata = (data) => {
     setfetched_data({
       ...fetched_data,
@@ -92,6 +98,7 @@ const Weatherapp = (props) => {
     });
   };
 
+  // Api Call to get Search Data
   const fetchdata = async () => {
     const citydata = await fetch(
       `https://api.weatherapi.com/v1/forecast.json?key=${props.apikey}&q=${city}&days=5&aqi=yes`
@@ -99,12 +106,12 @@ const Weatherapp = (props) => {
     upadtedata(citydata);
   };
 
-  ///////////////////////////////////////////////////////////////////////////////////////
-
+  // Upadting the Data when the value of city cahnges
   useEffect(() => {
     fetchdata();
   }, [city]);
 
+  // Setting up the city name entered by user or coordinate
   const headerdata = (data) => {
     setCity(data);
   };

@@ -5,7 +5,6 @@ import CurrentIcon from "@mui/icons-material/MyLocationOutlined";
 import Searchicon from "@mui/icons-material/TravelExploreSharp";
 
 const Header = (props) => {
-  /////////////////////////////////////////////////////////
   const [inputValue, setInputValue] = useState(""); // UserInput field
   const [city, setCity] = useState(""); // UserInput field
 
@@ -18,8 +17,6 @@ const Header = (props) => {
     props.headerdata(inputValue);
     setInputValue("");
   };
-
-  /////////////////////////////////////////////////////////
 
   // Getting Location Coordinate from user onClick
   function getcoordinate() {
@@ -38,8 +35,6 @@ const Header = (props) => {
     const response = await fetch(
       `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
     ).then((res) => res.json());
-    //   .then((data) => console.log(data))
-    //   .catch((error) => console.log(error));
 
     const city = await response.city;
     setCity(city);
@@ -48,6 +43,7 @@ const Header = (props) => {
       await props.headerdata(city);
     };
 
+    // Sending City Data to Weather Component for Fetching Weather
     sendCity();
   };
 
